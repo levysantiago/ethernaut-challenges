@@ -2,8 +2,8 @@
 pragma solidity 0.8.0;
 
 import {Test} from "forge-std/Test.sol";
-import {HelloEthernautAttacker} from "../../src/hello-ethernaut/HelloEthernautAttacker.sol";
-import {Instance as HelloEthernaut} from "../../src/hello-ethernaut/HelloEthernaut.sol";
+import {HelloEthernautAttacker} from "../../src/1-hello-ethernaut/HelloEthernautAttacker.sol";
+import {Instance as HelloEthernaut} from "../../src/1-hello-ethernaut/HelloEthernaut.sol";
 
 contract HelloEthernautAttackerTest is Test{
   HelloEthernautAttacker helloEthernautAttacker;

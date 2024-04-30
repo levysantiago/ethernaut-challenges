@@ -2,7 +2,7 @@
 pragma solidity 0.8.0;
 
 import {Script} from "forge-std/Script.sol";
-import {Instance as HelloEthernaut} from "../../src/hello-ethernaut/HelloEthernaut.sol";
+import {Instance as HelloEthernaut} from "../../src/1-hello-ethernaut/HelloEthernaut.sol";
 import {Ethernaut} from "../../src/Ethernaut.sol";
 
 contract HelloEthernautAttack is Script {

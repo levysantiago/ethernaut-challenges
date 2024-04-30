@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.0;
 
-import {Instance as HelloEthernaut} from "../../src/hello-ethernaut/HelloEthernaut.sol";
+import {Instance as HelloEthernaut} from "../../src/1-hello-ethernaut/HelloEthernaut.sol";
 
 contract HelloEthernautAttacker{
   HelloEthernaut helloEthernaut;
