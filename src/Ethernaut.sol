@@ -1,22 +1,7 @@
-/**
- *Submitted for verification at Etherscan.io on 2022-11-17
-*/
-
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
-
-// OpenZeppelin Contracts (last updated v4.7.0) (access/Ownable.sol)
-
-
-
-
-// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
-
-
-
-/**
+/*
  * @dev Provides information about the current execution context, including the
  * sender of the transaction and its data. While these are generally available
  * via msg.sender and msg.data, they should not be accessed in such a direct
@@ -32,10 +17,10 @@ abstract contract Context {
     }
 
     function _msgData() internal view virtual returns (bytes calldata) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
         return msg.data;
     }
 }
-
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -57,16 +42,10 @@ abstract contract Ownable is Context {
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
-    constructor() {
-        _transferOwnership(_msgSender());
-    }
-
-    /**
-     * @dev Throws if called by any account other than the owner.
-     */
-    modifier onlyOwner() {
-        _checkOwner();
-        _;
+    constructor () {
+        address msgSender = _msgSender();
+        _owner = msgSender;
+        emit OwnershipTransferred(address(0), msgSender);
     }
 
     /**
@@ -77,10 +56,11 @@ abstract contract Ownable is Context {
     }
 
     /**
-     * @dev Throws if the sender is not the owner.
+     * @dev Throws if called by any account other than the owner.
      */
-    function _checkOwner() internal view virtual {
+    modifier onlyOwner() {
         require(owner() == _msgSender(), "Ownable: caller is not the owner");
+        _;
     }
 
     /**
@@ -91,7 +71,8 @@ abstract contract Ownable is Context {
      * thereby removing any functionality that is only available to the owner.
      */
     function renounceOwnership() public virtual onlyOwner {
-        _transferOwnership(address(0));
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
     }
 
     /**
@@ -100,46 +81,24 @@ abstract contract Ownable is Context {
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
         require(newOwner != address(0), "Ownable: new owner is the zero address");
-        _transferOwnership(newOwner);
-    }
-
-    /**
-     * @dev Transfers ownership of the contract to a new account (`newOwner`).
-     * Internal function without access restriction.
-     */
-    function _transferOwnership(address newOwner) internal virtual {
-        address oldOwner = _owner;
+        emit OwnershipTransferred(_owner, newOwner);
         _owner = newOwner;
-        emit OwnershipTransferred(oldOwner, newOwner);
     }
 }
 
-
 abstract contract Level is Ownable {
-  function createInstance(address _player) virtual public payable returns (address);
-  function validateInstance(address payable _instance, address _player) virtual public returns (bool);
+    function createInstance(address _player) public payable virtual returns (address);
+    function validateInstance(address payable _instance, address _player) public virtual returns (bool);
 }
 
 interface IStatistics {
     function saveNewLevel(address level) external;
 
-    function createNewInstance(
-        address instance,
-        address level,
-        address player
-    ) external;
+    function createNewInstance(address instance, address level, address player) external;
 
-    function submitFailure(
-        address instance,
-        address level,
-        address player
-    ) external;
+    function submitFailure(address instance, address level, address player) external;
 
-    function submitSuccess(
-        address instance,
-        address level,
-        address player
-    ) external;
+    function submitSuccess(address instance, address level, address player) external;
 }
 
 contract Ethernaut is Ownable {
@@ -173,16 +132,8 @@ contract Ethernaut is Ownable {
 
     mapping(address => EmittedInstanceData) public emittedInstances;
 
-    event LevelInstanceCreatedLog(
-        address indexed player,
-        address indexed instance,
-        address indexed level
-    );
-    event LevelCompletedLog(
-        address indexed player,
-        address indexed instance,
-        address indexed level
-    );
+    event LevelInstanceCreatedLog(address indexed player, address indexed instance, address indexed level);
+    event LevelCompletedLog(address indexed player, address indexed instance, address indexed level);
 
     function createLevelInstance(Level _level) public payable {
         // Ensure level is registered.
@@ -192,11 +143,7 @@ contract Ethernaut is Ownable {
         address instance = _level.createInstance{value: msg.value}(msg.sender);
 
         // Store emitted instance relationship with player and level.
-        emittedInstances[instance] = EmittedInstanceData(
-            msg.sender,
-            _level,
-            false
-        );
+        emittedInstances[instance] = EmittedInstanceData(msg.sender, _level, false);
 
         statistics.createNewInstance(instance, address(_level), msg.sender);
 
@@ -207,10 +154,7 @@ contract Ethernaut is Ownable {
     function submitLevelInstance(address payable _instance) public {
         // Get player and level.
         EmittedInstanceData storage data = emittedInstances[_instance];
-        require(
-            data.player == msg.sender,
-            "This instance doesn't belong to the current user"
-        ); // instance was emitted for this player
+        require(data.player == msg.sender, "This instance doesn't belong to the current user"); // instance was emitted for this player
         require(data.completed == false, "Level has been completed already"); // not already submitted
 
         // Have the level check the instance.
@@ -218,19 +162,11 @@ contract Ethernaut is Ownable {
             // Register instance as completed.
             data.completed = true;
 
-            statistics.submitSuccess(
-                _instance,
-                address(data.level),
-                msg.sender
-            );
+            statistics.submitSuccess(_instance, address(data.level), msg.sender);
             // Notify success via logs.
             emit LevelCompletedLog(msg.sender, _instance, address(data.level));
         } else {
-            statistics.submitFailure(
-                _instance,
-                address(data.level),
-                msg.sender
-            );
+            statistics.submitFailure(_instance, address(data.level), msg.sender);
         }
     }
 }
