@@ -1,12 +1,9 @@
-[submodule "1-hello-ethernaut/lib/forge-std"]
-	path = 1-hello-ethernaut/lib/forge-std
+[submodule "3-fallout/lib/forge-std"]
+	path = 3-fallout/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "2-fallback/lib/forge-std"]
 	path = 2-fallback/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "3-fallout/lib/forge-std"]
-	path = 3-fallout/lib/forge-std
-	url = https://github.com/foundry-rs/forge-std
-[submodule "fallout/lib/forge-std"]
-	path = fallout/lib/forge-std
+[submodule "1-hello-ethernaut/lib/forge-std"]
+	path = 1-hello-ethernaut/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
