@@ -1,15 +1,12 @@
 name: test
 
-on:
-  push:
-    branches:
-      - "main"
+on: workflow_dispatch
 
 env:
   FOUNDRY_PROFILE: ci
 
 jobs:
-  check:
+  hello-ethernaut-1:
     strategy:
       fail-fast: true
 
@@ -24,6 +21,69 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
+
+      - name: Enter folder
+        run: cd 1-hello-ethernaut
+      
+      - name: Run Forge build
+        run: |
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          forge test -vvv
+        id: test
+  
+  fallback-2:
+    strategy:
+      fail-fast: true
+
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+      
+      - name: Enter folder
+        run: cd 2-fallback
+
+      - name: Run Forge build
+        run: |
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          forge test -vvv
+        id: test
+
+  fallout-3:
+    strategy:
+      fail-fast: true
+
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+      
+      - name: Enter folder
+        run: cd 3-fallout
 
       - name: Run Forge build
         run: |
