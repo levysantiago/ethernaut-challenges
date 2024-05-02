@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: true
 
-    name: Foundry project
+    name: 1-HelloEthernaut
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: true
 
-    name: Foundry project
+    name: 2-Fallback
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -71,7 +71,7 @@ jobs:
     strategy:
       fail-fast: true
 
-    name: Foundry project
+    name: 3-Fallout
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
