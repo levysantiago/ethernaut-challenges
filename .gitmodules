@@ -7,3 +7,6 @@
 [submodule "3-fallout/lib/forge-std"]
 	path = 3-fallout/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "fallout/lib/forge-std"]
+	path = fallout/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
