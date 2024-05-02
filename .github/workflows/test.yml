@@ -24,18 +24,17 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
-
-      - name: Enter folder
-        run: cd 1-hello-ethernaut
       
       - name: Run Forge build
         run: |
+          cd 1-hello-ethernaut
           forge --version
           forge build --sizes
         id: build
 
       - name: Run Forge tests
         run: |
+          cd 1-hello-ethernaut
           forge test -vvv
         id: test
   
@@ -54,18 +53,17 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
-      
-      - name: Enter folder
-        run: cd 2-fallback
 
       - name: Run Forge build
         run: |
+          cd 2-fallback
           forge --version
           forge build --sizes
         id: build
 
       - name: Run Forge tests
         run: |
+          cd 2-fallback
           forge test -vvv
         id: test
 
@@ -84,17 +82,16 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
-      
-      - name: Enter folder
-        run: cd 3-fallout
 
       - name: Run Forge build
         run: |
+          cd 3-fallout
           forge --version
           forge build --sizes
         id: build
 
       - name: Run Forge tests
         run: |
+          cd 3-fallout
           forge test -vvv
         id: test
