@@ -1,4 +1,4 @@
-# Level 6: Token
+# Level 5: Token
 
 **Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0x478f3476358Eb166Cb7adE4666d04fbdDB56C407)
 

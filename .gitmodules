@@ -1,21 +1,21 @@
 [submodule "3-fallout/lib/forge-std"]
-	path = 3-fallout/lib/forge-std
+	path = 2-fallout/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "2-fallback/lib/forge-std"]
-	path = 2-fallback/lib/forge-std
+	path = 1-fallback/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "1-hello-ethernaut/lib/forge-std"]
-	path = 1-hello-ethernaut/lib/forge-std
+	path = 0-hello-ethernaut/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "4-coinflip/lib/forge-std"]
-	path = 4-coinflip/lib/forge-std
+	path = 3-coinflip/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "6-token/lib/forge-std"]
-	path = 6-token/lib/forge-std
+	path = 5-token/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "7-delegation/lib/forge-std"]
-	path = 7-delegation/lib/forge-std
+	path = 6-delegation/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 [submodule "5-telephone/lib/forge-std"]
-	path = 5-telephone/lib/forge-std
+	path = 4-telephone/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std

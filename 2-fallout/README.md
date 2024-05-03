@@ -1,4 +1,4 @@
-# Level 3: Fallout
+# Level 2: Fallout
 
 **Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0x676e57FdBbd8e5fE1A7A3f4Bb1296dAC880aa639)
 
