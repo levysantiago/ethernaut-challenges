@@ -95,3 +95,32 @@ jobs:
           cd 3-fallout
           forge test -vvv
         id: test
+
+  coinflip-4:
+    strategy:
+      fail-fast: true
+
+    name: 4-CoinFlip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run Forge build
+        run: |
+          cd 4-coinflip
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          cd 4-coinflip
+          forge test -vvv
+        id: test
