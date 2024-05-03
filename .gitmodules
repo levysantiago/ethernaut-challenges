@@ -10,3 +10,6 @@
 [submodule "4-coinflip/lib/forge-std"]
 	path = 4-coinflip/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "5-token/lib/forge-std"]
+	path = 5-token/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
