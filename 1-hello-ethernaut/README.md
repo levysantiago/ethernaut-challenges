@@ -1,66 +1,52 @@
-## Foundry
+# Level 2: Fallback
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0x7E0f53981657345B31C59aC44e9c21631Ce710c7)
 
-Foundry consists of:
+**Description**:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Congratulations! You have completed the tutorial. Have a look at the Solidity code for the contract you just interacted with below.
 
-## Documentation
+You are now ready to complete all the levels of the game, and as of now, you're on your own.
 
-https://book.getfoundry.sh/
+Godspeed!!
 
-## Usage
+**Instance used**: [0xBd71Ab79388A8C299953dc13A432b93D564DACad](https://sepolia.etherscan.io/address/0xBd71Ab79388A8C299953dc13A432b93D564DACad)
 
-### Build
+**Attack Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0xc7503b04cc10028c8f0ef67c6c3dc625fa2d1651a57ea49c2469b3d63e55175e)
 
-```shell
-$ forge build
+**Level Completed Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0x70b2fb3510848c54e54413687fd8be8962a7503fd74140c0a9ac8f452594429b)
+
+# Getting started
+
+## Build
+
+```bash
+make build
 ```
 
-### Test
+## Test
 
-```shell
-$ forge test
+```bash
+make test
 ```
 
-### Format
+## Attack (mainnet)
 
-```shell
-$ forge fmt
+```bash
+make attack
 ```
 
-### Gas Snapshots
+## Submit level (mainnet)
 
-```shell
-$ forge snapshot
+```bash
+make submit
 ```
 
-### Anvil
+## Check if you completed the level (mainnet)
 
-```shell
-$ anvil
-```
+`true` - You completed the level
+`false` - You didn't complete the level
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+make check
 ```
