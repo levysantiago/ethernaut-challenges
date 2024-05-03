@@ -2,7 +2,6 @@
 pragma solidity 0.8.0;
 
 import {Test} from "forge-std/Test.sol";
-import {Ethernaut} from "../src/Ethernaut.sol";
 import {Fallback} from "../src/Fallback.sol";
 
 contract FallbackAttackTest is Test{
