@@ -8,4 +8,6 @@ test :; forge test
 
 attack:; forge script script/HelloEthernautAttack.s.sol:HelloEthernautAttack --fork-url sepolia --broadcast
 
+submit:; forge script script/SubmitLevel.s.sol:SubmitLevel --fork-url sepolia --broadcast
+
 check:; source .env && cast call $$ETHERNAUT_CONTRACT_INSTANCE "emittedInstances(address)(address, address, bool)" $$VICTIM_CONTRACT_INSTANCE --rpc-url sepolia

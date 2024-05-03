@@ -28,6 +28,8 @@ contract FallbackAttackTest is Test{
     vm.prank(contribuitor2);
     fallbackContract.contribute{value: 100 wei}();
 
+    assertEq(address(fallbackContract).balance, 200);
+
     // attack
     vm.startPrank(owner);
 
@@ -46,5 +48,6 @@ contract FallbackAttackTest is Test{
     assertEq(fallbackContract.contributions(owner), 1);
     assertEq(fallbackContract.owner(), owner);
     assertEq(address(owner).balance, INITIAL_BALANCE + 200);
+    assertEq(address(fallbackContract).balance, 0);
   }
 }

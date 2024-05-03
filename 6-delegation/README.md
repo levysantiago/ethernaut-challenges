@@ -28,19 +28,19 @@ make build
 make test
 ```
 
-## Attack (mainnet)
+## Attack (testnet)
 
 ```bash
 make attack
 ```
 
-## Submit level (mainnet)
+## Submit level (testnet)
 
 ```bash
 make submit
 ```
 
-## Check if you completed the level (mainnet)
+## Check if you completed the level (testnet)
 
 `true` - You completed the level
 `false` - You didn't complete the level
