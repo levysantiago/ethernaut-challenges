@@ -1,66 +1,17 @@
-## Foundry
+# Ethernaut Challenges on Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Ethernaut**
+[Ethernaut](https://ethernaut.openzeppelin.com/) is a web platform created by [OpenZeppelin](https://www.openzeppelin.com/). The Ethernaut holds many challenges where we can explore smart contracts vulnerabilities by trying to exploit these contracts. Of course, these contracts where developed to be "hacked", so it is expected that they have some bugs and vulnerabilities and, therefore, YOU SHOULD NOT USE THEM IN PRODUCTION!
 
-Foundry consists of:
+**This repo**
+I started to solve the Ethernaut levels and to save the solutions in this repo. You can solve the levels using the Ethernaut website console and sometimes the [RemixIDE](https://remix.ethereum.org), but I decided to solve them using [Foundry](https://book.getfoundry.sh/) and share my solutions with you. Here I also explain how I managed to attack the contract and how would be the right way to avoid the vulnerability.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Getting Started
 
-## Documentation
+Before you continue, if you didn't solve any Ethernaut challenges, `I FULLY RECOMMEND YOU TRY TO SOLVE THE CHALLENGES BY YOURSELF BEFORE GETTING SOLUTION SPOILERS HERE`! Try starting from the [level 1](https://ethernaut.openzeppelin.com/level/0x7E0f53981657345B31C59aC44e9c21631Ce710c7).
 
-https://book.getfoundry.sh/
+Each Ethernaut level in this repo is a Foundry project. If you want to know how to execute each one of them, you can just access the level folder. Each level folder has it's own `README.md`.
 
-## Usage
+Here is the status of the levels solutions I already completed and uploaded here.
 
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+| level | Name | Completed |

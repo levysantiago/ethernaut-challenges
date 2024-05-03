@@ -1,66 +1,52 @@
-## Foundry
+# Level 2: Fallback
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0x3c34A342b2aF5e885FcaA3800dB5B205fEfa3ffB)
 
-Foundry consists of:
+**Description**:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+You know the basics of how ether goes in and out of contracts, including the usage of the fallback method.
 
-## Documentation
+You've also learnt about OpenZeppelin's Ownable contract, and how it can be used to restrict the usage of some methods to a privileged address.
 
-https://book.getfoundry.sh/
+Move on to the next level when you're ready!
 
-## Usage
+**Instance used**: [0x836c5bc2ac19240bAD8c3d2fB56F36D355A56B25](https://sepolia.etherscan.io/address/0x836c5bc2ac19240bAD8c3d2fB56F36D355A56B25)
 
-### Build
+**Attack Transactions**: [see on etherscan](https://sepolia.etherscan.io/address/0x836c5bc2ac19240bAD8c3d2fB56F36D355A56B25)
 
-```shell
-$ forge build
+**Level Completed Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0xc28ef761dac3c5bd93ab5c5bc036953d70fbe1081430537b5f2b0313d08ad208)
+
+# Getting started
+
+## Build
+
+```bash
+make build
 ```
 
-### Test
+## Test
 
-```shell
-$ forge test
+```bash
+make test
 ```
 
-### Format
+## Attack (mainnet)
 
-```shell
-$ forge fmt
+```bash
+make attack
 ```
 
-### Gas Snapshots
+## Submit level (mainnet)
 
-```shell
-$ forge snapshot
+```bash
+make submit
 ```
 
-### Anvil
+## Check if you completed the level (mainnet)
 
-```shell
-$ anvil
-```
+`true` - You completed the level
+`false` - You didn't complete the level
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+make check
 ```

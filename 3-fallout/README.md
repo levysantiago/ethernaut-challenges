@@ -1,66 +1,62 @@
-## Foundry
+# Level 3: Fallout
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0x676e57FdBbd8e5fE1A7A3f4Bb1296dAC880aa639)
 
-Foundry consists of:
+**Description**:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+That was silly wasn't it? Real world contracts must be much more secure than this and so must it be much harder to hack them right?
 
-## Documentation
+Well... Not quite.
 
-https://book.getfoundry.sh/
+The story of Rubixi is a very well known case in the Ethereum ecosystem. The company changed its name from 'Dynamic Pyramid' to 'Rubixi' but somehow they didn't rename the constructor method of its contract:
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```javascript
+contract Rubixi {
+  address private owner;
+  function DynamicPyramid() { owner = msg.sender; }
+  function collectAllFees() { owner.transfer(this.balance) }
+  ...
 ```
 
-### Test
+This allowed the attacker to call the old constructor and claim ownership of the contract, and steal some funds. Yep. Big mistakes can be made in smartcontractland.
 
-```shell
-$ forge test
+**Instance used**: [0x407d461AD2233b6c2Be251185f32E65D23bba754](https://sepolia.etherscan.io/address/0x407d461AD2233b6c2Be251185f32E65D23bba754)
+
+**Attack Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0xa2476837c4d9ebbf1b5f9d197593665466a1b6f987c92c724de0e43665c3ee8d)
+
+**Level Completed Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0x000abfcd41ece4b2b3de24e233d852ba1dc543627a09e6fc7ddb3d8c606a8749)
+
+# Getting started
+
+## Build
+
+```bash
+make build
 ```
 
-### Format
+## Test
 
-```shell
-$ forge fmt
+```bash
+make test
 ```
 
-### Gas Snapshots
+## Attack (mainnet)
 
-```shell
-$ forge snapshot
+```bash
+make attack
 ```
 
-### Anvil
+## Submit level (mainnet)
 
-```shell
-$ anvil
+```bash
+make submit
 ```
 
-### Deploy
+## Check if you completed the level (mainnet)
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+`true` - You completed the level
+`false` - You didn't complete the level
 
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+make check
 ```

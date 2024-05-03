@@ -1,66 +1,60 @@
-## Foundry
+# Level 4: CoinFlip
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0xA62fE5344FE62AdC1F356447B669E9E6D10abaaF)
 
-Foundry consists of:
+**Description**:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Generating random numbers in solidity can be tricky. There currently isn't a native way to generate them, and everything you use in smart contracts is publicly visible, including the local variables and state variables marked as private. Miners also have control over things like blockhashes, timestamps, and whether to include certain transactions - which allows them to bias these values in their favor.
 
-## Documentation
+To get cryptographically proven random numbers, you can use [Chainlink VRF](https://docs.chain.link/vrf/v2/subscription/examples/get-a-random-number), which uses an oracle, the LINK token, and an on-chain contract to verify that the number is truly random.
 
-https://book.getfoundry.sh/
+Some other options include using Bitcoin block headers (verified through [BTC Relay](http://btcrelay.org/)), [RANDAO](https://github.com/randao/randao), or [Oraclize](https://medium.com/coinmonks/simple-oraclize-example-with-solidity-68b6811902da)).
 
-## Usage
+**Instance used**: [0xaA2bC5e263a1b3BdE313A36Aba01CFd40877EA53](https://sepolia.etherscan.io/address/0xaA2bC5e263a1b3BdE313A36Aba01CFd40877EA53)
 
-### Build
+**Attacker Contract**: [0x8788f2a0096ce8783b009d2897654054ba6a5b3e](https://sepolia.etherscan.io/address/0x8788f2a0096ce8783b009d2897654054ba6a5b3e)
 
-```shell
-$ forge build
+**Attack Transaction**: [see on etherscan](https://sepolia.etherscan.io/address/0x8788f2a0096ce8783b009d2897654054ba6a5b3e)
+
+**Level Completed Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0x38a4e8b07fa3048796d290ef61bfbeca6702a036235a1090ddd290f9abfb0280)
+
+# Getting started
+
+## Build
+
+```bash
+make build
 ```
 
-### Test
+## Test
 
-```shell
-$ forge test
+```bash
+make test
 ```
 
-### Format
+## Deploy Attacker contract (mainnet)
 
-```shell
-$ forge fmt
+```bash
+make deploy
 ```
 
-### Gas Snapshots
+## Attack (mainnet)
 
-```shell
-$ forge snapshot
+```bash
+make attack
 ```
 
-### Anvil
+## Submit level (mainnet)
 
-```shell
-$ anvil
+```bash
+make submit
 ```
 
-### Deploy
+## Check if you completed the level (mainnet)
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+`true` - You completed the level
+`false` - You didn't complete the level
 
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+make check
 ```

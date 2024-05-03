@@ -1,66 +1,62 @@
-## Foundry
+# Level 6: Token
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Level Page**: [See on Ethernaut](https://ethernaut.openzeppelin.com/level/0x478f3476358Eb166Cb7adE4666d04fbdDB56C407)
 
-Foundry consists of:
+**Description**:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Overflows are very common in solidity and must be checked for with control statements such as:
 
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```javascript
+if(a + c > a) {
+  a = a + c;
+}
 ```
 
-### Test
+An easier alternative is to use OpenZeppelin's SafeMath library that automatically checks for overflows in all the mathematical operators. The resulting code looks like this:
 
-```shell
-$ forge test
+```javascript
+a = a.add(c);
 ```
 
-### Format
+If there is an overflow, the code will revert.
 
-```shell
-$ forge fmt
+**Instance used**: [0x3B73aDaaFF46681F725bfb23A7414554458C6D0E](https://sepolia.etherscan.io/address/0x3B73aDaaFF46681F725bfb23A7414554458C6D0E)
+
+**Attack Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0x32db0a045a9d64c04301751887f085ef97d6bb4316fbc05b6017630f1906ded3)
+
+**Level Completed Transaction**: [see on etherscan](https://sepolia.etherscan.io/tx/0xcd583eacd2fb35d4c067497ca4c830d73e2e062b48f439d2196284b79c08e081)
+
+# Getting started
+
+## Build
+
+```bash
+make build
 ```
 
-### Gas Snapshots
+## Test
 
-```shell
-$ forge snapshot
+```bash
+make test
 ```
 
-### Anvil
+## Attack (mainnet)
 
-```shell
-$ anvil
+```bash
+make attack
 ```
 
-### Deploy
+## Submit level (mainnet)
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+make submit
 ```
 
-### Cast
+## Check if you completed the level (mainnet)
 
-```shell
-$ cast <subcommand>
-```
+`true` - You completed the level
+`false` - You didn't complete the level
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+```bash
+make check
 ```
