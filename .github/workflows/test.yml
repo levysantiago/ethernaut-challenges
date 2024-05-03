@@ -125,11 +125,11 @@ jobs:
           forge test -vvv
         id: test
       
-  token-5:
+  token-6:
     strategy:
       fail-fast: true
 
-    name: 5-Token
+    name: 6-Token
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -143,13 +143,42 @@ jobs:
 
       - name: Run Forge build
         run: |
-          cd 5-token
+          cd 6-token
           forge --version
           forge build --sizes
         id: build
 
       - name: Run Forge tests
         run: |
-          cd 5-token
+          cd 6-token
+          forge test -vvv
+        id: test
+
+  delegation-7:
+    strategy:
+      fail-fast: true
+
+    name: 7-Delegation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run Forge build
+        run: |
+          cd 7-delegation
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          cd 7-delegation
           forge test -vvv
         id: test
