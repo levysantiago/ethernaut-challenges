@@ -14,4 +14,37 @@ Each Ethernaut level in this repo is a Foundry project. If you want to know how 
 
 Here is the status of the levels solutions I already completed and uploaded here.
 
-| level | Name | Completed |
+| level | Name             | Completed |
+| ----- | ---------------- | --------- |
+| 0     | Hello Ethernaut  | ✅         |
+| 1     | Fallback         | ✅         |
+| 2     | Fallout          | ✅         |
+| 3     | CoinFlip         | ✅         |
+| 4     | Telephone        | ✅         |
+| 5     | Token            | ✅         |
+| 6     | Delegation       | ✅         |
+| 7     | Force            | ✅         |
+| 8     | Vault            | ⌛️         |
+| 9     | King             | ⌛️         |
+| 10    | Re-entrancy      | ⌛️         |
+| 11    | Elevator         | ⌛️         |
+| 12    | Privacy          | ⌛️         |
+| 13    | Gatekeeper One   | ⌛️         |
+| 14    | Gatekeeper Two   | ⌛️         |
+| 15    | Naught Coin      | ⌛️         |
+| 16    | Preservation     | ⌛️         |
+| 17    | Recovery         | ⌛️         |
+| 18    | MagicNumber      | ⌛️         |
+| 19    | Allen Codex      | ⌛️         |
+| 20    | Denial           | ⌛️         |
+| 21    | Shop             | ⌛️         |
+| 22    | Dex              | ⌛️         |
+| 23    | Dex Two          | ⌛️         |
+| 24    | Puzzle Wallet    | ⌛️         |
+| 25    | Motorbike        | ⌛️         |
+| 26    | DoubleEntryPoint | ⌛️         |
+| 27    | Good Samaritan   | ⌛️         |
+| 28    | Gatekeeper Tree  | ⌛️         |
+| 29    | Switch           | ⌛️         |
+| 30    | HigherOrder      | ⌛️         |
+| 31    | Stake            | ⌛️         |
