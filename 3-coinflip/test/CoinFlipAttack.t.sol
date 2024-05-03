@@ -14,7 +14,7 @@ contract CoinFlipAttack is Test{
     coinFlipAttacker = new CoinFlipAttacker(address(coinFlip));
   }
 
-  function testAttack() public{
+  function testShouldWinTenTimes() public{
     for(uint i=1;i<=10;i++){
       vm.roll(i);
       coinFlipAttacker.attack();
