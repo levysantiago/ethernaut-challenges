@@ -25,6 +25,7 @@ contract TelephoneAttack is Test{
   }
 
   function testShouldClaimOwnership() public{
+    
     vm.prank(attacker);
     telephoneAttacker.attack();
 
