@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.0;
 
-interface Ethernaut{
+interface IEthernaut{
   function submitLevelInstance(address payable _instance) external;
 }

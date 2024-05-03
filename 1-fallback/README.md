@@ -74,6 +74,13 @@ contract Fallback {
 
 **Description**: The comparison `msg.value > 0 && contributions[msg.sender] > 0` in `Fallback::receive` function should not compare only if the contribution is greater than zero, this leads a malicious address to send an ETH contribution using `Fallback::contribute` function and send ETH directly to the contract right after. Then the malicious address can claim ownership by just sending `1 wei`, for example, since the `msg.value` is greater than zero and the `contributions[msg.sender]` is too. After claiming the ownership the address can execute the `Fallback::withdraw` function and steal all the contract balances.
 
+```javascript
+    receive() external payable {
+@>      require(msg.value > 0 && contributions[msg.sender] > 0);
+        owner = msg.sender;
+    }
+```
+
 **Impact**: Any strange address could claim the ownership and therefore, steal all the contract balances using the `Fallback::withdraw` function.
 
 **Proof of Code**:
@@ -125,7 +132,7 @@ See the complete code in `test/FallbackAttack.t.sol`.
 **Recommended Mitigation**: The mitigation depends on the project requirements. But here are some ways we could fix this issue:
 
 1. Remove the `Fallback::receive` function and only allow users to contribute through `Fallback::contribute` function.
-2. Update the `Fallback::receive` comparison to `msg.value > 0 && contributions[msg.sender] > contributions[owner]`. This would ensure that the ownership is only changed if the user contribution is greater than the last owner. This would be like:
+2. Update the `Fallback::receive` comparison to `msg.value > 0 && contributions[msg.sender] > contributions[owner]`. This would ensure that the ownership is only changed if the user contribution is greater than the last owner contribution. This would be like:
 
 ```diff
 receive() external payable {

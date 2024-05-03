@@ -20,6 +20,8 @@ contract FalloutAttackTest is Test{
     uint256 attackerBalance = 1 wei;
     vm.deal(attacker, attackerBalance);
 
+    assertEq(fallout.owner(), address(0));
+
     vm.prank(attacker);
     fallout.Fal1out();
 
