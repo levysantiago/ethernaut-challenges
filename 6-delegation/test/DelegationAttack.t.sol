@@ -18,6 +18,8 @@ contract DelegationAttackTest is Test{
     address attacker = makeAddr("attacker");
     vm.deal(attacker, 1 ether);
 
+    assertEq(delegation.owner(), address(this));
+
     // Attack
     vm.prank(attacker);
     (bool success,) = address(delegation).call(abi.encodeWithSignature("pwn()"));

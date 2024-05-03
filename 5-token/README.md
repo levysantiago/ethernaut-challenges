@@ -77,6 +77,15 @@ this is the same as
 
 and here we have an underflow, where `userBalance` would be something like: `115792089237316195423570985008687907853269984665640564039457584007913129639935` that is the `uint256` max number.
 
+```javascript
+    function transfer(address _to, uint256 _value) public returns (bool) {
+        require(balances[msg.sender] - _value >= 0);
+@>      balances[msg.sender] -= _value;
+        balances[_to] += _value;
+        return true;
+    }
+```
+
 **Impact**: Users can update their token balance to be a huge number by exploiting an underflow.
 
 **Proof of Code**

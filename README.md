@@ -48,3 +48,50 @@ Here is the status of the levels solutions I already completed and uploaded here
 | 29    | Switch           | ⌛️         |
 | 30    | HigherOrder      | ⌛️         |
 | 31    | Stake            | ⌛️         |
+
+### Install Foundry
+
+Please, follow the [Foundry Installation guide](https://book.getfoundry.sh/getting-started/installation) to install Foundry in your machine.
+
+### Environmental variables
+
+Each individual level folder has a `.env` file. To execute the commands you should fill these variables first. Consult the `.env.example` in each sub-project folder. Some of them are:
+
+```text
+PRIVATE_KEY=
+SEPOLIA_RPC_URL=
+ETHERNAUT_CONTRACT_INSTANCE=0xa3e7317E591D5A0F1c605be1b3aC4D2ae56104d6
+VICTIM_CONTRACT_INSTANCE=
+ATTACKER_CONTRACT=
+```
+
+- `PRIVATE_KEY`: The private key of the address that will execute the transactions in this project. It must be the same wallet that created the contract instance in the Ethernaut website.
+- `SEPOLIA_RPC_URL`: The sepolia RPC node URL. See the [list of nodes available](https://chainlist.org/chain/11155111).
+- `ETHERNAUT_CONTRACT_INSTANCE`: The Ethernaut contract address. 
+- `VICTIM_CONTRACT_INSTANCE`: The contract address of the level instance you deployed on the sepolia testnet.
+- `ATTACKER_CONTRACT`: In some levels you will need to deploy an attacker contract first, and then perform the attack to the level instance. This variable represents the attacker contract address.
+
+### Risk Classification
+
+Inside the projects `README.md` you may find the risk classifications as `[H-1]`, `[M-1]`, the number represents the sequence of findings of the same risk type, and the risk classification is based on:
+
+|            |        | Impact |        |     |
+| ---------- | ------ | ------ | ------ | --- |
+|            |        | High   | Medium | Low |
+|            | High   | H      | H/M    | M   |
+| Likelihood | Medium | H/M    | M      | M/L |
+|            | Low    | M      | M/L    | L   |
+
+### Fixing the vulnerabilities
+
+Each level has a `README.md` with all the information about the level, about the vulnerability found, about the attack I made to the instances I deployed, and finally the recommended mitigation to improve each level protocol.
+
+It's important to highlight that in this repo I don't explore other possible vulnerabilities in these contracts because this is just a game, many contracts there where created to exploit one specific vulnerability without any hole project context, so it doesn't make much sense trying to find more vulnerabilities if we don't know the context where the code is placed (mainly because it's just a game 😊).
+
+# Links
+
+- [Ethernaut](https://ethernaut.openzeppelin.com/)
+- [OpenZeppelin](https://www.openzeppelin.com/)
+- [Sepolia Scan](https://sepolia.etherscan.io/)
+- [Get Sepolia Faucet](https://www.alchemy.com/faucets/ethereum-sepolia)
+- [Foundry Book](https://book.getfoundry.sh/)
