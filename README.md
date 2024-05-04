@@ -1,3 +1,5 @@
+[![test](https://github.com/levysantiago/ethernaut-challenges/actions/workflows/test.yml/badge.svg)](https://github.com/levysantiago/ethernaut-challenges/actions/workflows/test.yml)
+
 # Ethernaut Challenges on Foundry
 
 **Ethernaut**
