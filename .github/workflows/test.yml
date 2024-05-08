@@ -211,3 +211,31 @@ jobs:
           cd 6-delegation
           forge test -vvv
         id: test
+  delegation-7:
+    strategy:
+      fail-fast: true
+
+    name: 7-Force
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run Forge build
+        run: |
+          cd 7-force
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          cd 7-force
+          forge test -vvv
+        id: test
