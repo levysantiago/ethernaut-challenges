@@ -19,3 +19,6 @@
 [submodule "5-telephone/lib/forge-std"]
 	path = 4-telephone/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "7-force/lib/forge-std"]
+	path = 7-force/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
