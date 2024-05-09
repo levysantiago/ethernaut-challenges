@@ -90,11 +90,12 @@ contract Vault is Ownable {
 
 # Attack
 
-**Description**: 
+**Description**: We can exploit the contract by using the exact strategy we explained in the findings. To attack the contract we can follow this sequence:
 
-```javascript
-
-```
+1. Recover the password by executing `make password`. This script will read the second storage of the contract that is where the password value is. The password will appear on your terminal as the result of the code execution.
+2. Copy the password and paste as value of the `PASSWORD` env variable.
+3. Execute the attack by running `make attack`.
+4. Submit the level with `make submit`.
 
 **Instance used**: [0xfDfeDD105523243Cd93f338D5C267142CE28d110](https://sepolia.etherscan.io/address/0xfDfeDD105523243Cd93f338D5C267142CE28d110)
 
