@@ -26,7 +26,7 @@ Here is the status of the levels solutions I already completed and uploaded here
 | 5     | Token            | ✅         |
 | 6     | Delegation       | ✅         |
 | 7     | Force            | ✅         |
-| 8     | Vault            | ⌛️         |
+| 8     | Vault            | ✅         |
 | 9     | King             | ⌛️         |
 | 10    | Re-entrancy      | ⌛️         |
 | 11    | Elevator         | ⌛️         |
