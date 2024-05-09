@@ -257,7 +257,7 @@ jobs:
 
       - name: Run Forge build
         run: |
-          cd 8-Vault
+          cd 8-vault
           forge --version
           forge build --sizes
         id: build
