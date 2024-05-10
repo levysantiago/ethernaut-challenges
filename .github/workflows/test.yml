@@ -2,6 +2,7 @@ name: test
 
 on:
   push:
+  pull_request: 
     branches:
       - "main"
 
@@ -265,5 +266,34 @@ jobs:
       - name: Run Forge tests
         run: |
           cd 8-vault
+          forge test -vvv
+        id: test
+  
+  king-9:
+    strategy:
+      fail-fast: true
+
+    name: 9-King
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run Forge build
+        run: |
+          cd 9-king
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          cd 9-king
           forge test -vvv
         id: test
