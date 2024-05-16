@@ -28,3 +28,9 @@
 [submodule "9-king/lib/forge-std"]
 	path = 9-king/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "10-re-entrancy/lib/forge-std"]
+	path = 10-re-entrancy/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "10-re-entrancy/lib/openzeppelin-contracts"]
+	path = 10-re-entrancy/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
